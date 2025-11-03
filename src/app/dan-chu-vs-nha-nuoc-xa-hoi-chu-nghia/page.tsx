@@ -76,9 +76,8 @@ export default function DemocracyPage() {
     <div
       className="min-h-screen bg-[#121212] text-[#d9d9d9]"
       style={{
-        backgroundImage:
-          "url('/assets/dan-chu/4a22a5e0295e170d8bbbfa3301b17b33dd1e379a.png')",
-        backgroundSize: "cover",
+        backgroundImage: "url('/assets/dan-chu/dark-bg.png')",
+        backgroundSize: "fixed",
         backgroundPosition: "center",
       }}
     >
