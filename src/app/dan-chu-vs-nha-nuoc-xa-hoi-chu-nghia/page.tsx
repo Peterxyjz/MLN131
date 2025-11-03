@@ -1,7 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { useEffect, useState } from "react";
 
 const developmentSections = [
   {
@@ -14,14 +17,14 @@ const developmentSections = [
   {
     titleLeading: "THỐNG NHẤT ĐẤT NƯỚC",
     highlight: undefined,
-    copy: "Giai đoạn 1975 – 1978 đánh dấu thắng lợi của sự nghiệp thống nhất đất nước. Đến năm 1978, nước ta chính thức mang tên Cộng hòa Xã hội Chủ nghĩa Việt Nam, nhưng trong các văn kiện Đảng hầu như chưa sử dụng cụm từ “dân chủ xã hội chủ nghĩa”, mà thường nêu quan điểm “xây dựng chế độ làm chủ tập thể xã hội chủ nghĩa” gần với “chuyên chính vô sản”. Việc xây dựng dân chủ phải gắn với đặc điểm kinh tế, xã hội, văn hoá của Việt Nam, đồng thời đi liền với hoàn thiện hệ thống pháp luật và kỷ cương, nhưng đây vẫn là vấn đề chưa được đặt ra một cách rõ ràng. Nhiều lĩnh vực liên quan mật thiết đến dân chủ xã hội chủ nghĩa như dân sinh, dân trí, dân quyền... chưa được đặt đúng vị trí, chưa được giải quyết thỏa đáng để thúc đẩy việc xây dựng nền dân chủ xã hội chủ nghĩa.",
+    copy: 'Giai đoạn 1975 – 1978 đánh dấu thắng lợi của sự nghiệp thống nhất đất nước. Đến năm 1978, nước ta chính thức mang tên Cộng hòa Xã hội Chủ nghĩa Việt Nam, nhưng trong các văn kiện Đảng hầu như chưa sử dụng cụm từ "dân chủ xã hội chủ nghĩa", mà thường nêu quan điểm "xây dựng chế độ làm chủ tập thể xã hội chủ nghĩa" gần với "chuyên chính vô sản".',
     image: "/assets/dan-chu/279ac6d45618567a5d837b177b274e8ac8f5cb57.png",
     reverse: true,
   },
   {
     titleLeading: "ĐỔI MỚI",
     highlight: undefined,
-    copy: "Đại hội VI của Đảng (năm 1986) đề ra đường lối đổi mới toàn diện đất nước, trong đó nhấn mạnh phát huy dân chủ để tạo ra động lực mạnh mẽ cho phát triển đất nước. Đại hội khẳng định: “Trong toàn bộ hoạt động của mình, Đảng phải quán triệt tư tưởng ‘lấy dân làm gốc’, xây dựng và phát huy quyền làm chủ của nhân dân lao động. “Cách mạng là sự nghiệp của quần chúng” – ở đâu nhân dân lao động có ý thức làm chủ và được làm chủ thực sự, ở đó sẽ xuất hiện phong trào cách mạng mạnh mẽ.”",
+    copy: "Đại hội VI của Đảng (năm 1986) đề ra đường lối đổi mới toàn diện đất nước, trong đó nhấn mạnh phát huy dân chủ để tạo ra động lực mạnh mẽ cho phát triển đất nước. Đại hội khẳng định: \"Trong toàn bộ hoạt động của mình, Đảng phải quán triệt tư tưởng 'lấy dân làm gốc', xây dựng và phát huy quyền làm chủ của nhân dân lao động.\"",
     image: "/assets/dan-chu/a8e0fa1016123e027a05cf51b7f6f77188a93ea7.png",
     reverse: false,
   },
@@ -31,8 +34,8 @@ const democracyPillars = [
   {
     title: "Dân là gốc, là chủ, làm chủ",
     paragraphs: [
-      "Dân chủ phải được thực hiện trong đời sống thực tiễn ở tất cả các cấp, mọi lĩnh vực của đời sống xã hội: về lĩnh vực kinh tế, chính trị, văn hóa, xã hội. Kế thừa tư tưởng dân chủ trong lịch sử và trực tiếp là tư tưởng dân chủ của Hồ Chí Minh, từ khi trước đến nay, nhất là trong thời kỳ đổi mới, Đảng luôn xác định xây dựng nền dân chủ XHCN vừa là mục tiêu, vừa là động lực phát triển xã hội, là bản chất của chế độ XHCN. Dân chủ gắn liền với kỷ cương và phải được thể chế hóa bằng pháp luật.",
-      "“Nước ta là nước dân chủ. Bao nhiêu lợi ích đều vì dân. Bao nhiêu quyền hạn đều là của dân. Công cuộc đổi mới, xây dựng là trách nhiệm của dân. Sự nghiệp kháng chiến, kiến quốc là công việc của dân. Chính quyền từ xã đến Chính phủ Trung ương do dân cử ra. Đoàn thể từ Trung ương đến xã do dân tổ chức nên. Nói tóm lại, quyền hành và lực lượng đều ở nơi dân”.",
+      "Dân chủ phải được thực hiện trong đời sống thực tiễn ở tất cả các cấp, mọi lĩnh vực của đời sống xã hội: về lĩnh vực kinh tế, chính trị, văn hóa, xã hội.",
+      '"Nước ta là nước dân chủ. Bao nhiêu lợi ích đều vì dân. Bao nhiêu quyền hạn đều là của dân. Công cuộc đổi mới, xây dựng là trách nhiệm của dân."',
     ],
     image: "/assets/dan-chu/f2780d9086654d1f6434d66de101ec9fd7af9811.png",
     reverse: false,
@@ -40,7 +43,7 @@ const democracyPillars = [
   {
     title: "Dân chủ là mục tiêu của chế độ XHCN",
     paragraphs: [
-      "Trong 8 đặc trưng của chủ nghĩa xã hội Việt Nam, đặc trưng tổng quát là: “Dân giàu, nước mạnh, dân chủ, công bằng, văn minh.” Khi phát huy dân chủ, nhà nước có thể huy động sức mạnh và trí tuệ của nhân dân, góp phần giải quyết các vấn đề như chống tham nhũng, tiêu cực, thu hút nhân tài.",
+      'Trong 8 đặc trưng của chủ nghĩa xã hội Việt Nam, đặc trưng tổng quát là: "Dân giàu, nước mạnh, dân chủ, công bằng, văn minh."',
     ],
     image: "/assets/dan-chu/8791afd3ba4de05f2c9dee9e9f4ec1e45bb2a292.png",
     reverse: false,
@@ -72,36 +75,91 @@ const democracyPillars = [
 ];
 
 export default function DemocracyPage() {
+  const [isVisible, setIsVisible] = useState<{ [key: string]: boolean }>({});
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible((prev) => ({ ...prev, [entry.target.id]: true }));
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    document.querySelectorAll("[data-animate]").forEach((el) => {
+      observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div
-      className="min-h-screen bg-[#121212] text-[#d9d9d9]"
+      className="min-h-screen bg-[#121212] text-[#d9d9d9] relative overflow-hidden"
       style={{
-        backgroundImage: "url('/assets/dan-chu/dark-bg.png')",
-        backgroundSize: "fixed",
+        backgroundImage: "url('/assets/common/dark-bg.png')",
+        backgroundSize: "cover",
         backgroundPosition: "center",
+        backgroundAttachment: "fixed",
       }}
     >
+      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60 pointer-events-none"></div>
+
       <Header currentPath="/dan-chu-vs-nha-nuoc-xa-hoi-chu-nghia" />
-      <main className="mx-auto flex max-w-7xl flex-col gap-24 px-4 py-16 sm:px-6 lg:px-8">
-        <section>
-          <div className="text-center">
-            <h1 className="font-quicksand text-5xl font-bold text-[#f3c554]">
-              2. DÂN CHỦ XÃ HỘI CHỦ NGHĨA Ở VIỆT NAM
+
+      <main className="relative z-10 mx-auto flex max-w-7xl flex-col gap-32 px-4 py-16 sm:px-6 lg:px-8">
+        {/* Hero Section */}
+        <section
+          id="hero"
+          data-animate
+          className={`transition-all duration-1000 ${
+            isVisible["hero"]
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-10"
+          }`}
+        >
+          <div className="text-center mb-16">
+            <div className="inline-block">
+              <div className="inline-flex items-center gap-2 rounded-full border-2 border-[#f3c554]/50 bg-[#f3c554]/10 px-5 py-2.5 backdrop-blur-sm mb-6">
+                <div className="h-2.5 w-2.5 rounded-full bg-[#f3c554] animate-pulse"></div>
+                <span className="font-inter text-sm font-bold text-[#f3c554] uppercase tracking-wider">
+                  Chương 2
+                </span>
+              </div>
+            </div>
+
+            <h1 className="font-quicksand text-5xl font-extrabold text-white drop-shadow-2xl lg:text-7xl mb-8">
+              <span className="bg-gradient-to-r from-[#f3c554] via-[#ffd966] to-[#f3c554] bg-clip-text text-transparent animate-gradient">
+                DÂN CHỦ XÃ HỘI CHỦ NGHĨA
+                <br />Ở VIỆT NAM
+              </span>
             </h1>
           </div>
-          <div className="mt-20 grid items-center gap-16 md:grid-cols-2">
-            <Image
-              src="/assets/dan-chu/e8073081f13a6b8f416dbaef61946c4e9bcb0329.png"
-              alt="Phát biểu trước nhân dân"
-              width={900}
-              height={600}
-              className="h-auto w-full rounded-lg shadow-2xl"
-            />
-            <div className="text-right">
-              <h2 className="font-quicksand text-3xl font-bold text-[#f3c554]">
-                SỰ RA ĐỜI, PHÁT TRIỂN
-              </h2>
-              <p className="mt-6 font-quicksand text-xl font-medium text-[#d9d9d9]">
+
+          <div className="grid items-center gap-12 md:grid-cols-2 backdrop-blur-sm bg-black/30 p-8 rounded-3xl border border-white/10">
+            <div className="relative group">
+              <div className="absolute -inset-4 bg-gradient-to-r from-[#f3c554]/20 to-transparent rounded-3xl blur-xl"></div>
+              <Image
+                src="/assets/dan-chu/e8073081f13a6b8f416dbaef61946c4e9bcb0329.png"
+                alt="Phát biểu trước nhân dân"
+                width={900}
+                height={600}
+                className="relative h-auto w-full rounded-2xl shadow-2xl border-2 border-white/10 transform group-hover:scale-105 transition-all duration-500"
+              />
+            </div>
+
+            <div className="space-y-6">
+              <div className="flex items-center gap-3">
+                <div className="h-12 w-1.5 bg-gradient-to-b from-[#f3c554] to-[#ffd966] rounded-full"></div>
+                <h2 className="font-quicksand text-4xl font-bold text-[#ffd966]">
+                  SỰ RA ĐỜI, PHÁT TRIỂN
+                </h2>
+              </div>
+
+              <p className="font-quicksand text-xl font-medium text-[#d9d9d9]/90 leading-relaxed">
                 Chế độ dân chủ nhân dân ở nước ta được xác lập sau Cách mạng
                 Tháng Tám năm 1945.
               </p>
@@ -109,295 +167,305 @@ export default function DemocracyPage() {
           </div>
         </section>
 
-        <section className="space-y-20">
-          {developmentSections.map((section) => (
+        {/* Development Sections */}
+        <section className="space-y-24">
+          {developmentSections.map((section, index) => (
             <div
               key={section.titleLeading}
-              className="grid items-center gap-16 md:grid-cols-2"
+              id={`section-${index}`}
+              data-animate
+              className={`grid items-center gap-12 md:grid-cols-2 backdrop-blur-sm bg-gradient-to-br from-black/40 to-black/20 p-8 rounded-3xl border border-white/10 transition-all duration-1000 ${
+                isVisible[`section-${index}`]
+                  ? "opacity-100 scale-100"
+                  : "opacity-0 scale-95"
+              }`}
             >
               {section.reverse ? (
-                <Image
-                  src={section.image}
-                  alt={section.titleLeading}
-                  width={900}
-                  height={600}
-                  className="order-last h-auto w-full rounded-lg shadow-2xl md:order-first"
-                />
+                <>
+                  <div className="relative group md:order-last">
+                    <div className="absolute -inset-4 bg-gradient-to-l from-[#f3c554]/20 to-transparent rounded-3xl blur-xl"></div>
+                    <Image
+                      src={section.image}
+                      alt={section.titleLeading}
+                      width={900}
+                      height={600}
+                      className="relative h-auto w-full rounded-2xl shadow-2xl border-2 border-white/10 transform group-hover:scale-105 transition-all duration-500"
+                    />
+                  </div>
+                  <div className="space-y-6">
+                    <div className="flex flex-wrap items-end gap-4">
+                      <h3 className="font-quicksand text-4xl font-extrabold text-white lg:text-5xl">
+                        <span className="bg-gradient-to-r from-[#f3c554] to-[#ffd966] bg-clip-text text-transparent">
+                          {section.titleLeading}
+                        </span>
+                      </h3>
+                      {section.highlight && (
+                        <span className="font-quicksand text-[120px] lg:text-[180px] font-extrabold leading-none text-[#f3c554] opacity-60">
+                          {section.highlight}
+                        </span>
+                      )}
+                    </div>
+                    <div className="h-1 w-24 bg-gradient-to-r from-[#f3c554] to-transparent rounded-full"></div>
+                    <p className="font-quicksand text-lg font-medium text-[#d9d9d9]/90 leading-relaxed">
+                      {section.copy}
+                    </p>
+                  </div>
+                </>
               ) : (
-                <Image
-                  src={section.image}
-                  alt={section.titleLeading}
-                  width={900}
-                  height={600}
-                  className="h-auto w-full rounded-lg shadow-2xl"
-                />
+                <>
+                  <div className="relative group">
+                    <div className="absolute -inset-4 bg-gradient-to-r from-[#f3c554]/20 to-transparent rounded-3xl blur-xl"></div>
+                    <Image
+                      src={section.image}
+                      alt={section.titleLeading}
+                      width={900}
+                      height={600}
+                      className="relative h-auto w-full rounded-2xl shadow-2xl border-2 border-white/10 transform group-hover:scale-105 transition-all duration-500"
+                    />
+                  </div>
+                  <div className="space-y-6">
+                    <div className="flex flex-wrap items-end gap-4">
+                      <h3 className="font-quicksand text-4xl font-extrabold text-white lg:text-5xl">
+                        <span className="bg-gradient-to-r from-[#f3c554] to-[#ffd966] bg-clip-text text-transparent">
+                          {section.titleLeading}
+                        </span>
+                      </h3>
+                      {section.highlight && (
+                        <span className="font-quicksand text-[120px] lg:text-[180px] font-extrabold leading-none text-[#f3c554] opacity-60">
+                          {section.highlight}
+                        </span>
+                      )}
+                    </div>
+                    <div className="h-1 w-24 bg-gradient-to-r from-[#f3c554] to-transparent rounded-full"></div>
+                    <p className="font-quicksand text-lg font-medium text-[#d9d9d9]/90 leading-relaxed">
+                      {section.copy}
+                    </p>
+                  </div>
+                </>
               )}
-              <div className={section.reverse ? "md:order-last" : ""}>
-                <div className="flex flex-wrap items-end gap-4">
-                  <h3 className="font-quicksand text-4xl font-bold text-[#f3c554]">
-                    {section.titleLeading}
-                  </h3>
-                  {section.highlight ? (
-                    <span className="font-quicksand text-[200px] font-bold leading-none text-[#f3c554]">
-                      {section.highlight}
-                    </span>
-                  ) : null}
-                </div>
-                <p className="mt-6 font-quicksand text-xl font-medium text-[#d9d9d9]">
-                  {section.copy}
-                </p>
-              </div>
             </div>
           ))}
         </section>
 
-        <section className="space-y-24">
+        {/* Bản chất Section */}
+        <section
+          id="essence"
+          data-animate
+          className={`space-y-16 transition-all duration-1000 ${
+            isVisible["essence"]
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-10"
+          }`}
+        >
           <div className="text-center">
-            <h2 className="font-quicksand text-5xl font-bold text-[#f3c554]">
-              BẢN CHẤT CỦA NỀN DÂN CHỦ XHCN Ở VIỆT NAM
+            <h2 className="font-quicksand text-4xl font-extrabold text-white lg:text-6xl mb-6">
+              <span className="bg-gradient-to-r from-[#f3c554] via-[#ffd966] to-[#f3c554] bg-clip-text text-transparent animate-gradient">
+                BẢN CHẤT CỦA NỀN DÂN CHỦ
+                <br />
+                XHCN Ở VIỆT NAM
+              </span>
             </h2>
-            <div className="mt-16 grid items-center gap-16 md:grid-cols-2">
-              <p className="font-quicksand text-3xl font-medium text-[#d9d9d9]">
-                Dân chủ xã hội chủ nghĩa là quyền lực thuộc về nhân dân, thực
-                hiện quyền làm chủ trên cơ sở gắn với lợi ích chung.
-              </p>
+            <div className="h-1.5 w-48 bg-gradient-to-r from-transparent via-[#f3c554] to-transparent rounded-full mx-auto"></div>
+          </div>
+
+          <div className="grid items-center gap-12 md:grid-cols-2 backdrop-blur-sm bg-gradient-to-br from-black/40 to-black/20 p-8 rounded-3xl border border-white/10">
+            <p className="font-quicksand text-2xl font-medium text-[#d9d9d9]/90 leading-relaxed lg:text-3xl">
+              Dân chủ xã hội chủ nghĩa là quyền lực thuộc về nhân dân, thực hiện
+              quyền làm chủ trên cơ sở gắn với lợi ích chung.
+            </p>
+            <div className="relative group">
+              <div className="absolute -inset-4 bg-gradient-to-l from-[#f3c554]/20 to-transparent rounded-3xl blur-xl"></div>
               <Image
                 src="/assets/dan-chu/06c024ebbcf0eb3a1261c190bfcbefe2c67b3e6c.png"
                 alt="Lãnh đạo và nhân dân"
                 width={900}
                 height={600}
-                className="h-auto w-full rounded-lg shadow-2xl"
+                className="relative h-auto w-full rounded-2xl shadow-2xl border-2 border-white/10 transform group-hover:scale-105 transition-all duration-500"
               />
             </div>
           </div>
+        </section>
 
-          {democracyPillars.map((pillar) => (
+        {/* Democracy Pillars */}
+        <section className="space-y-20">
+          {democracyPillars.map((pillar, index) => (
             <div
               key={pillar.title}
-              className="grid items-center gap-16 md:grid-cols-2"
+              id={`pillar-${index}`}
+              data-animate
+              className={`grid items-center gap-12 md:grid-cols-2 backdrop-blur-sm bg-gradient-to-br from-black/40 to-black/20 p-8 rounded-3xl border border-white/10 transition-all duration-1000 ${
+                isVisible[`pillar-${index}`]
+                  ? "opacity-100 translate-x-0"
+                  : "opacity-0 translate-x-10"
+              }`}
             >
               {pillar.reverse ? (
-                <div className="md:order-last">
-                  <div className="text-right">
-                    <h3 className="font-quicksand text-5xl font-bold text-[#f3c554]">
-                      {pillar.title}
-                    </h3>
-                    <div className="mt-6 space-y-6 font-quicksand text-2xl font-medium text-[#d9d9d9]">
-                      {pillar.paragraphs.map((paragraph) => (
-                        <p key={paragraph}>{paragraph}</p>
+                <>
+                  <div className="space-y-6 md:order-last">
+                    <div className="flex items-center gap-3">
+                      <div className="h-12 w-1.5 bg-gradient-to-b from-[#f3c554] to-[#ffd966] rounded-full"></div>
+                      <h3 className="font-quicksand text-3xl font-extrabold text-white lg:text-4xl">
+                        <span className="bg-gradient-to-r from-[#f3c554] to-[#ffd966] bg-clip-text text-transparent">
+                          {pillar.title}
+                        </span>
+                      </h3>
+                    </div>
+                    <div className="space-y-5 font-quicksand text-lg font-medium text-[#d9d9d9]/90 leading-relaxed">
+                      {pillar.paragraphs.map((paragraph, i) => (
+                        <p
+                          key={i}
+                          className={
+                            i > 0
+                              ? "italic text-[#ffd966] border-l-4 border-[#f3c554]/50 pl-5"
+                              : ""
+                          }
+                        >
+                          {paragraph}
+                        </p>
                       ))}
                     </div>
                   </div>
-                </div>
-              ) : (
-                <div>
-                  <h3 className="font-quicksand text-5xl font-bold text-[#f3c554]">
-                    {pillar.title}
-                  </h3>
-                  <div className="mt-6 space-y-6 font-quicksand text-2xl font-medium text-[#d9d9d9]">
-                    {pillar.paragraphs.map((paragraph) => (
-                      <p key={paragraph}>{paragraph}</p>
-                    ))}
+                  <div className="relative group">
+                    <div className="absolute -inset-4 bg-gradient-to-r from-[#f3c554]/20 to-transparent rounded-3xl blur-xl"></div>
+                    <Image
+                      src={pillar.image}
+                      alt={pillar.title}
+                      width={900}
+                      height={600}
+                      className="relative h-auto w-full rounded-2xl shadow-2xl border-2 border-white/10 transform group-hover:scale-105 transition-all duration-500"
+                    />
                   </div>
-                </div>
+                </>
+              ) : (
+                <>
+                  <div className="relative group">
+                    <div className="absolute -inset-4 bg-gradient-to-r from-[#f3c554]/20 to-transparent rounded-3xl blur-xl"></div>
+                    <Image
+                      src={pillar.image}
+                      alt={pillar.title}
+                      width={900}
+                      height={600}
+                      className="relative h-auto w-full rounded-2xl shadow-2xl border-2 border-white/10 transform group-hover:scale-105 transition-all duration-500"
+                    />
+                  </div>
+                  <div className="space-y-6">
+                    <div className="flex items-center gap-3">
+                      <div className="h-12 w-1.5 bg-gradient-to-b from-[#f3c554] to-[#ffd966] rounded-full"></div>
+                      <h3 className="font-quicksand text-3xl font-extrabold text-white lg:text-4xl">
+                        <span className="bg-gradient-to-r from-[#f3c554] to-[#ffd966] bg-clip-text text-transparent">
+                          {pillar.title}
+                        </span>
+                      </h3>
+                    </div>
+                    <div className="space-y-5 font-quicksand text-lg font-medium text-[#d9d9d9]/90 leading-relaxed">
+                      {pillar.paragraphs.map((paragraph, i) => (
+                        <p
+                          key={i}
+                          className={
+                            i > 0
+                              ? "italic text-[#ffd966] border-l-4 border-[#f3c554]/50 pl-5"
+                              : ""
+                          }
+                        >
+                          {paragraph}
+                        </p>
+                      ))}
+                    </div>
+                  </div>
+                </>
               )}
-              <Image
-                src={pillar.image}
-                alt={pillar.title}
-                width={900}
-                height={600}
-                className={
-                  pillar.reverse
-                    ? "h-auto w-full rounded-lg shadow-2xl"
-                    : "order-last h-auto w-full rounded-lg shadow-2xl"
-                }
-              />
             </div>
           ))}
+        </section>
 
-          <div className="grid items-center gap-16 md:grid-cols-2">
+        {/* Phương châm 4 Dân */}
+        <section
+          id="phuong-cham"
+          data-animate
+          className={`grid items-center gap-12 md:grid-cols-2 backdrop-blur-sm bg-gradient-to-br from-black/40 to-black/20 p-8 rounded-3xl border border-white/10 transition-all duration-1000 ${
+            isVisible["phuong-cham"]
+              ? "opacity-100 scale-100"
+              : "opacity-0 scale-95"
+          }`}
+        >
+          <div className="relative group">
+            <div className="absolute -inset-4 bg-gradient-to-r from-[#f3c554]/20 to-transparent rounded-3xl blur-xl"></div>
             <Image
               src="/assets/dan-chu/c3785689e2f97c3392370180fa5313b40b256b5e.png"
               alt="Làm việc trong hội nghị"
               width={900}
               height={600}
-              className="h-auto w-full rounded-lg shadow-2xl"
+              className="relative h-auto w-full rounded-2xl shadow-2xl border-2 border-white/10 transform group-hover:scale-105 transition-all duration-500"
             />
-            <div className="space-y-4 font-quicksand text-3xl font-medium text-[#d9d9d9]">
-              <h3 className="text-5xl font-bold text-[#f3c554]">
+          </div>
+          <div className="space-y-6">
+            <h3 className="font-quicksand text-4xl font-extrabold text-white">
+              <span className="bg-gradient-to-r from-[#f3c554] to-[#ffd966] bg-clip-text text-transparent">
                 Thực hiện phương châm:
-              </h3>
-              <p>
-                <span className="font-bold">Dân biết:</span> Nhà nước công khai,
-                minh bạch thông tin để nhân dân được biết.
-              </p>
-              <p>
-                <span className="font-bold">Dân bàn:</span> Nhân dân tham gia
-                bàn bạc, góp ý.
-              </p>
-              <p>
-                <span className="font-bold">Dân làm:</span> Nhân dân tham gia
-                thực hiện, xây dựng.
-              </p>
-              <p>
-                <span className="font-bold">Dân kiểm tra:</span> Nhân dân giám
-                sát, đánh giá và bãi miễn cán bộ nếu không làm tròn trách nhiệm.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <section className="space-y-24">
-          <div className="text-center">
-            <h2 className="font-quicksand text-5xl font-bold text-[#f3c554]">
-              Trong bối cảnh Việt Nam, bản chất của dân chủ xã hội chủ nghĩa
-              được thể hiện thông qua hai hình thức cơ bản
-            </h2>
-            <div className="mt-16 space-y-20">
-              <div className="grid items-center gap-16 md:grid-cols-2">
-                <div className="text-right">
-                  <h3 className="font-quicksand text-3xl font-bold text-[#f3c554]">
-                    Dân chủ trực tiếp
-                  </h3>
-                  <p className="mt-4 font-quicksand text-xl font-medium text-[#d9d9d9]">
-                    Dân chủ trực tiếp cho phép nhân dân trực tiếp tham gia vào
-                    quá trình quyết định những vấn đề quan trọng của đất nước và
-                    cộng đồng. Điều này thể hiện qua các hoạt động như: trưng
-                    cầu ý dân (ví dụ về Hiến pháp năm 2013), việc cử tri trực
-                    tiếp bầu Quốc hội và Hội đồng nhân dân các cấp, hay góp ý
-                    kiến đối với các dự thảo luật thông qua Cổng thông tin điện
-                    tử của Chính phủ.
+              </span>
+            </h3>
+            <div className="space-y-4 font-quicksand text-xl font-medium text-[#d9d9d9]/90">
+              {[
+                {
+                  title: "Dân biết",
+                  desc: "Nhà nước công khai, minh bạch thông tin để nhân dân được biết.",
+                },
+                { title: "Dân bàn", desc: "Nhân dân tham gia bàn bạc, góp ý." },
+                {
+                  title: "Dân làm",
+                  desc: "Nhân dân tham gia thực hiện, xây dựng.",
+                },
+                {
+                  title: "Dân kiểm tra",
+                  desc: "Nhân dân giám sát, đánh giá và bãi miễn cán bộ nếu không làm tròn trách nhiệm.",
+                },
+              ].map((item, i) => (
+                <div
+                  key={i}
+                  className="flex items-start gap-4 p-4 rounded-xl bg-black/30 border-l-4 border-[#f3c554] hover:bg-black/40 transition-all"
+                >
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#f3c554] flex items-center justify-center font-bold text-black text-sm">
+                    {i + 1}
+                  </div>
+                  <p>
+                    <span className="font-bold text-[#f3c554]">
+                      {item.title}:
+                    </span>{" "}
+                    {item.desc}
                   </p>
                 </div>
-                <Image
-                  src="/assets/dan-chu/bef711b2f2b3f6d326764afd565299aa9c1f6fc6.png"
-                  alt="Dân chủ trực tiếp"
-                  width={900}
-                  height={600}
-                  className="h-auto w-full rounded-lg shadow-2xl"
-                />
-              </div>
-              <div className="grid items-center gap-16 md:grid-cols-2">
-                <Image
-                  src="/assets/dan-chu/66c46c737591bcefff629ba41c79cbc16433c35a.png"
-                  alt="Dân chủ gián tiếp"
-                  width={900}
-                  height={600}
-                  className="h-auto w-full rounded-lg shadow-2xl"
-                />
-                <div>
-                  <h3 className="font-quicksand text-3xl font-bold text-[#f3c554]">
-                    Dân chủ gián tiếp
-                  </h3>
-                  <p className="mt-4 font-quicksand text-xl font-medium text-[#d9d9d9]">
-                    Dân chủ gián tiếp được thực hiện thông qua cơ chế đại diện,
-                    khi nhân dân bầu ra đại biểu Quốc hội và Hội đồng nhân dân
-                    để thay mặt họ quyết định những vấn đề chung. Quốc hội có
-                    trách nhiệm ban hành pháp luật, quyết định ngân sách và giám
-                    sát hoạt động của Chính phủ. Đây là hình thức phổ biến trong
-                    các nhà nước hiện đại, bảo đảm tính hiệu quả của quản lý xã
-                    hội.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="rounded-lg bg-[#121212]/80 p-8 shadow-2xl">
-            <h2 className="font-quicksand text-6xl font-bold text-[#f3c554]">
-              2.1. Nhà nước pháp quyền XHCN ở Việt Nam
-            </h2>
-            <p className="mt-8 font-quicksand text-3xl font-medium leading-tight text-[#d9d9d9]">
-              Nhà nước pháp quyền là nhà nước tôn trọng và tuân thủ pháp luật
-              một cách tuyệt đối, đặt Hiến pháp và pháp luật ở vị trí tối cao,
-              bảo đảm mọi công dân bình đẳng trước pháp luật và có điều kiện để
-              phát huy tự do, năng lực cá nhân. Trong mô hình này, bộ máy nhà
-              nước được phân công, phối hợp và kiểm soát quyền lực, hoạt động
-              dựa trên nguyên tắc vì lợi ích của nhân dân. Trong bối cảnh đổi
-              mới, Đảng ta xác định xây dựng Nhà nước pháp quyền xã hội chủ
-              nghĩa của dân, do dân, vì dân. Nhà nước quản lý xã hội bằng pháp
-              luật; mọi cơ quan, tổ chức, cán bộ, công chức và công dân đều có
-              nghĩa vụ tuân thủ Hiến pháp và pháp luật.
-            </p>
-            <div className="mt-12 grid items-start gap-16 md:grid-cols-2">
-              <ul className="list-disc space-y-4 pl-6 font-quicksand text-3xl font-medium text-[#d9d9d9]">
-                <li>Đề cao vai trò tối thượng của Hiến pháp và pháp luật.</li>
-                <li>
-                  Bảo đảm quyền con người, quyền và nghĩa vụ của công dân.
-                </li>
-                <li>
-                  Bộ máy nhà nước phải tập trung, thống nhất nhưng có phân công
-                  rõ ràng, phân cấp hợp lý để tránh lạm quyền.
-                </li>
-                <li>
-                  Nhà nước tôn trọng và lắng nghe nhân dân, chịu sự giám sát của
-                  nhân dân.
-                </li>
-                <li>
-                  Có cơ chế kiểm soát, ngăn ngừa và xử lý các hành vi tham
-                  nhũng, quan liêu, lộng quyền.
-                </li>
-              </ul>
-              <Image
-                src="/assets/dan-chu/1919f3e744b5b8b8a057058573ec1806109698d1.png"
-                alt="Lễ duyệt binh"
-                width={900}
-                height={600}
-                className="h-auto w-full rounded-lg shadow-2xl"
-              />
-            </div>
-          </div>
-
-          <div className="text-center">
-            <h2 className="font-quicksand text-5xl font-bold text-[#f3c554]">
-              Đặc trưng của Nhà nước pháp quyền XHCN ở Việt Nam
-            </h2>
-            <div className="mt-16 grid items-center gap-16 md:grid-cols-2">
-              <Image
-                src="/assets/dan-chu/f4cad9e0764e6021f5c066ab87417995980a4e3a.png"
-                alt="Gia đình Việt Nam"
-                width={900}
-                height={600}
-                className="h-auto w-full rounded-lg shadow-2xl"
-              />
-              <ol className="list-decimal space-y-4 pl-6 text-left font-quicksand text-2xl font-medium text-[#d9d9d9]">
-                <li>Nhà nước của nhân dân, do nhân dân, vì nhân dân.</li>
-                <li>
-                  Nhà nước được tổ chức và hoạt động dựa trên cơ sở Hiến pháp và
-                  pháp luật.
-                </li>
-                <li>
-                  Quyền lực nhà nước là thống nhất, có sự phân công rõ ràng, có
-                  cơ chế phối hợp nhịp nhàng, và kiểm soát giữa các cơ quan lập
-                  pháp, hành pháp và tư pháp.
-                </li>
-                <li>Nhà nước phải do Đảng Cộng sản lãnh đạo.</li>
-                <li>
-                  Nhà nước tôn trọng quyền con người, coi con người là chủ thể,
-                  là trung tâm của sự phát triển.
-                </li>
-                <li>
-                  Tổ chức và hoạt động của bộ máy nhà nước theo nguyên tắc tập
-                  trung dân chủ, có sự phân công, phân cấp, phối hợp và kiểm
-                  soát lẫn nhau, nhưng bảo đảm quyền lực là thống nhất.
-                </li>
-              </ol>
+              ))}
             </div>
           </div>
         </section>
 
-        <section className="text-center">
-          <div className="inline-flex flex-wrap items-center justify-center gap-3 rounded-full bg-[#e3a645] px-5 py-2 text-sm font-semibold text-black">
-            <span>Muốn hiểu rõ hơn?</span>
-            <Link className="underline" href="/nha-nuoc-xa-hoi-chu-nghia">
-              Tìm hiểu về Nhà nước pháp quyền XHCN
-            </Link>
-          </div>
-        </section>
+        {/* CTA Section */}
+        {/* <section className="text-center backdrop-blur-sm bg-gradient-to-r from-[#f3c554]/10 to-[#ffd966]/10 p-8 rounded-3xl border-2 border-[#f3c554]/30">
+          <Link
+            className="inline-flex items-center gap-3 rounded-xl bg-gradient-to-r from-[#f3c554] to-[#ffd966] px-8 py-4 font-inter text-lg font-bold text-black hover:shadow-2xl hover:shadow-[#f3c554]/50 hover:-translate-y-1 transition-all"
+            href="/nha-nuoc-xa-hoi-chu-nghia"
+          >
+            <span>Tìm hiểu về Nhà nước pháp quyền XHCN</span>
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2.5}
+                d="M13 7l5 5m0 0l-5 5m5-5H6"
+              />
+            </svg>
+          </Link>
+        </section> */}
       </main>
+
       <Footer
         decorationSrc="/assets/dan-chu/71_83.svg"
-        className="bg-[#121212]"
+        className="bg-black/60 backdrop-blur-sm border-t border-white/10 relative z-10"
       />
     </div>
   );

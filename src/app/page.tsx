@@ -65,52 +65,103 @@ export default function Home() {
       <Header currentPath="/" />
 
       {/* Hero Section with Carousel */}
-      <section className="relative h-[600px] overflow-hidden bg-gradient-to-br from-[#694030] via-[#4a2d22] to-[#2d1a14]">
-        {/* Background Pattern */}
+      <section className="relative h-[700px] overflow-hidden bg-gradient-to-br from-[#694030] via-[#4a2d22] to-[#2d1a14]">
+        {/* Animated Background Pattern */}
         <div
-          className="absolute inset-0 opacity-30"
+          className="absolute inset-0 opacity-20 animate-pulse"
           style={{
             backgroundImage: "url('/assets/common/light-bg.png')",
           }}
         />
 
+        {/* Floating Particles */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-20 left-10 w-2 h-2 bg-[#f3c554]/30 rounded-full animate-float"></div>
+          <div className="absolute top-40 right-20 w-3 h-3 bg-[#f3c554]/20 rounded-full animate-float-delay"></div>
+          <div className="absolute bottom-32 left-1/4 w-2 h-2 bg-[#f3c554]/40 rounded-full animate-float"></div>
+          <div className="absolute top-1/3 right-1/3 w-2 h-2 bg-[#f3c554]/25 rounded-full animate-float-delay"></div>
+        </div>
+
         {/* Slides */}
-        <div className="relative h-full">
+        <div className="relative h-full z-10">
           {HERO_SLIDES.map((slide, index) => (
             <div
               key={slide.id}
-              className={`absolute inset-0 transition-opacity duration-1000 ${
-                index === currentSlide ? "opacity-100" : "opacity-0"
+              className={`absolute inset-0 transition-all duration-1000 ${
+                index === currentSlide
+                  ? "opacity-100 scale-100 pointer-events-auto"
+                  : "opacity-0 scale-95 pointer-events-none"
               }`}
             >
               <div className="mx-auto flex h-full max-w-7xl items-center px-4 sm:px-6 lg:px-8">
                 <div className="grid w-full items-center gap-12 lg:grid-cols-2">
                   {/* Content */}
-                  <div className="space-y-5">
-                    <h1 className="font-quicksand text-3xl font-bold uppercase leading-tight text-[#f3c554] lg:text-[2.5rem]">
-                      {slide.title}
+                  <div className="space-y-7 animate-fade-in-up">
+                    {/* Badge */}
+                    <div className="inline-flex items-center gap-2 rounded-full border border-[#f3c554]/30 bg-[#f3c554]/10 px-4 py-2 backdrop-blur-sm">
+                      <div className="h-2 w-2 rounded-full bg-[#f3c554] animate-pulse"></div>
+                      <span className="font-inter text-xs font-semibold text-[#f3c554] uppercase tracking-wider">
+                        Chương {slide.id}
+                      </span>
+                    </div>
+
+                    <h1 className="font-quicksand text-4xl font-extrabold uppercase leading-[1.15] text-white drop-shadow-lg lg:text-6xl">
+                      <span className="bg-gradient-to-r from-[#f3c554] via-[#ffd966] to-[#f3c554] bg-clip-text text-transparent animate-gradient">
+                        {slide.title}
+                      </span>
                     </h1>
-                    <div className="space-y-2">
+
+                    <div className="space-y-3 pl-4 border-l-4 border-[#f3c554]/50">
                       {slide.items.map((item, i) => (
-                        <p
+                        <div
                           key={i}
-                          className="font-quicksand text-sm font-normal text-[#f3c554] lg:text-base"
+                          className="flex items-start gap-3 group"
+                          style={{ animationDelay: `${i * 100}ms` }}
                         >
-                          {item}
-                        </p>
+                          <svg
+                            className="w-5 h-5 text-[#f3c554] mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
+                          <p className="font-quicksand text-base font-medium text-[#f3e5c0] lg:text-lg leading-relaxed group-hover:text-[#f3c554] transition-colors">
+                            {item}
+                          </p>
+                        </div>
                       ))}
                     </div>
+
                     <Link
                       href={slide.link}
-                      className="inline-block rounded-lg bg-[#f3c554] px-6 py-2.5 font-quicksand text-sm font-bold uppercase text-black transition-all hover:bg-[#ffd966] hover:shadow-lg hover:shadow-[#f3c554]/30 lg:px-8 lg:py-3"
+                      className="group relative inline-flex items-center gap-3 rounded-xl bg-gradient-to-r from-[#f3c554] to-[#ffd966] px-8 py-4 font-inter text-base font-bold uppercase text-black transition-all hover:shadow-2xl hover:shadow-[#f3c554]/50 hover:-translate-y-1 active:translate-y-0 lg:px-10 lg:py-5 lg:text-lg overflow-hidden"
                     >
-                      KHÁM PHÁ NGAY
+                      <span className="absolute inset-0 bg-gradient-to-r from-[#ffd966] to-[#f3c554] opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                      <span className="relative z-10">KHÁM PHÁ</span>
+                      <svg
+                        className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2.5}
+                          d="M13 7l5 5m0 0l-5 5m5-5H6"
+                        />
+                      </svg>
                     </Link>
                   </div>
 
                   {/* Image */}
                   <div className="relative hidden lg:block">
-                    <div className="relative h-[400px] overflow-hidden rounded-2xl">
+                    <div className="absolute -inset-4 bg-gradient-to-r from-[#f3c554]/20 to-transparent rounded-3xl blur-2xl"></div>
+                    <div className="relative h-[500px] overflow-hidden rounded-2xl border-4 border-[#f3c554]/20 shadow-2xl transform hover:scale-105 transition-all duration-500">
                       <Image
                         src={slide.image}
                         alt={slide.title}
@@ -118,6 +169,7 @@ export default function Home() {
                         className="object-cover"
                         priority={index === 0}
                       />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                     </div>
                   </div>
                 </div>
@@ -127,20 +179,68 @@ export default function Home() {
         </div>
 
         {/* Slide Indicators */}
-        <div className="absolute bottom-8 left-1/2 flex -translate-x-1/2 gap-3">
+        <div className="absolute bottom-12 left-1/2 flex -translate-x-1/2 gap-3 z-20">
           {HERO_SLIDES.map((_, index) => (
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`h-2 rounded-full transition-all ${
+              className={`group relative h-3 rounded-full transition-all duration-300 ${
                 index === currentSlide
-                  ? "w-8 bg-[#f3c554]"
-                  : "w-2 bg-white/50 hover:bg-white/70"
+                  ? "w-12 bg-[#f3c554]"
+                  : "w-3 bg-white/40 hover:bg-white/70 hover:w-6"
               }`}
               aria-label={`Go to slide ${index + 1}`}
-            />
+            >
+              {index === currentSlide && (
+                <div className="absolute inset-0 rounded-full bg-[#f3c554] animate-ping opacity-75"></div>
+              )}
+            </button>
           ))}
         </div>
+
+        {/* Navigation Arrows */}
+        <button
+          onClick={() =>
+            goToSlide(
+              (currentSlide - 1 + HERO_SLIDES.length) % HERO_SLIDES.length
+            )
+          }
+          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 hidden lg:flex items-center justify-center w-12 h-12 rounded-full bg-black/30 backdrop-blur-sm border border-white/10 text-white hover:bg-[#f3c554] hover:border-[#f3c554] transition-all group"
+          aria-label="Previous slide"
+        >
+          <svg
+            className="w-6 h-6 group-hover:text-black transition-colors"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2.5}
+              d="M15 19l-7-7 7-7"
+            />
+          </svg>
+        </button>
+        <button
+          onClick={() => goToSlide((currentSlide + 1) % HERO_SLIDES.length)}
+          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 hidden lg:flex items-center justify-center w-12 h-12 rounded-full bg-black/30 backdrop-blur-sm border border-white/10 text-white hover:bg-[#f3c554] hover:border-[#f3c554] transition-all group"
+          aria-label="Next slide"
+        >
+          <svg
+            className="w-6 h-6 group-hover:text-black transition-colors"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2.5}
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+        </button>
       </section>
 
       {/* Main Content */}
