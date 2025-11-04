@@ -27,7 +27,7 @@ export function Header({ currentPath = "" }: HeaderProps) {
               4
             </span>
             <span className="flex flex-col">
-              <span className="font-inter text-xs uppercase tracking-[0.45em] text-white/55">
+              <span className="font-inter text-xs uppercase tracking-[0.2em] text-white/55">
                 MLN131
               </span>
               <span className="font-quicksand text-lg font-semibold text-white transition-colors group-hover:text-[#f3c554]">

@@ -49,7 +49,7 @@ export function Footer({
               {GROUP_NAME}
             </span>
             <p className="mt-4 text-sm text-white/70">
-              Không gian học tập dành cho sinh viên MLN131/133 khám phá Nhà nước
+              Không gian học tập dành cho sinh viên MLN131/131 khám phá Nhà nước
               xã hội chủ nghĩa, nền dân chủ và những câu chuyện ứng dụng trong
               đời sống hôm nay.
             </p>

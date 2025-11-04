@@ -16,7 +16,7 @@ const quicksand = Quicksand({
 });
 
 export const metadata: Metadata = {
-  title: "MLN133 - Dân chủ và Nhà nước XHCN",
+  title: "MLN131 - Dân chủ và Nhà nước XHCN",
   description:
     "Chuyên trang về Nhà nước xã hội chủ nghĩa, dân chủ và các kiến thức liên quan cho sinh viên MLN131.",
 };
