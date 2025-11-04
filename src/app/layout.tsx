@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Quicksand } from "next/font/google";
 import "./globals.css";
+import { Chatbot } from "@/components/chat/Chatbot";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -30,6 +31,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.variable} ${quicksand.variable} antialiased`}>
         {children}
+        <Chatbot />
       </body>
     </html>
   );
