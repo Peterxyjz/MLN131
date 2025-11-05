@@ -162,7 +162,7 @@ HÃY TRẢ LỜI (ngắn gọn, dễ hiểu, có emoji phù hợp):`;
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-8 left-8 z-50 flex items-center gap-3 rounded-full bg-linear-to-r from-[#f3c554] to-[#ffd966] px-6 py-4 font-bold text-black shadow-2xl transition-all hover:scale-110 hover:shadow-[#f3c554]/50 animate-bounce-in"
+          className="fixed bottom-8 left-8 z-50 flex items-center gap-3 rounded-full bg-linear-to-r from-[#f3c554] to-[#ffd966] p-4 font-bold text-black shadow-2xl transition-all hover:scale-110 hover:shadow-[#f3c554]/50 animate-bounce-in"
           aria-label="Mở trợ lý AI"
         >
           <svg
@@ -178,7 +178,6 @@ HÃY TRẢ LỜI (ngắn gọn, dễ hiểu, có emoji phù hợp):`;
               d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
             />
           </svg>
-          <span>Trợ lý AI</span>
           <div className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full bg-red-500 text-xs font-bold text-white animate-pulse">
             !
           </div>
