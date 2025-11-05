@@ -98,8 +98,8 @@ export default function SocialistStatePage() {
               <Image
                 src="/assets/nha-nuoc/0bdfa266c75b9f1c8241978bef018799391fa4cd.png"
                 alt="Nhà nước xã hội chủ nghĩa"
-                width={900}
-                height={800}
+                width={1000}
+                height={1000}
                 className="relative h-auto w-full  rounded-2xl shadow-2xl border-4 border-[#f3c554]/20 transform group-hover:scale-105 transition-all duration-500"
               />
             </div>
@@ -151,8 +151,8 @@ export default function SocialistStatePage() {
               <Image
                 src="/assets/nha-nuoc/0dc05d56e6cc73f05c60cefde74f95e8ffdbf9f1.png"
                 alt="Hồ Chí Minh cùng công nhân"
-                width={900}
-                height={800}
+                width={1000}
+                height={1000}
                 className="relative h-auto w-full  shadow-2xl rounded-2xl border-2 border-white/10 transform group-hover:scale-105 transition-all duration-500"
               />
             </div>
