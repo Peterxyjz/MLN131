@@ -9,4 +9,5 @@ export const NAV_ITEMS = [
   { label: "Phát huy và xây dựng", href: "/phat-huy-va-xay-dung" },
   { label: "Quiz ôn tập", href: "/quiz" },
   { label: "Bạn có biết", href: "/ban-co-biet" },
+  { label: "Giới thiệu", href: "/gioi-thieu" },
 ] as const;
